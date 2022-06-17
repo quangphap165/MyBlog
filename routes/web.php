@@ -13,27 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Models\Category;
-use App\Models\Image;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use App\Models\Post;
-use App\Models\User;
 
-Route::get('/createuserimage', function () {
-    $image = Image::find(2);
-    return $image->imageable;
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-
-
-
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/post', function () {
-    return view('post');
-})->name('post');
+Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.show');
+Route::post('/posts/{post:slug}', [PostsController::class, 'addComment'])->name('posts.add_comment');
 
 Route::get('/about', function () {
     return view('about');
