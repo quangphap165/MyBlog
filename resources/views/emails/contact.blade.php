@@ -2,11 +2,13 @@
 # Visitor Message
 
 Some Visitor Left a message:
-
-<br>
+<br><br>
 Firstname: {{$firstname}}
+<br>
 Secondname: {{$secondname}}
+<br>
 Email: {{$email}}
+<br>
 Sinject: {{$subject}}
 <br>
 Message: {{$message}}

@@ -92,7 +92,7 @@ return [
     */
 
     'from' => [
-        'address' => 'Contact@myblog.com',
+        'address' => 'contact@myblog.com',
         'name' => "MyBlog Contact",
     ],
     'reply_to' => ['address' => 'Contact@myblog.com', 'name' => 'MyBlog Contact'],
