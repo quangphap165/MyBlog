@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class AdminPostsController extends Controller
@@ -15,7 +16,7 @@ class AdminPostsController extends Controller
         'slug' => 'required|max:200',
         'excerpt' => 'required|max:300',
         'category_id' => 'required|numeric',
-        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=300,max_height=227',
+        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg',
         'body' => 'required',
     ];
 
@@ -60,6 +61,14 @@ class AdminPostsController extends Controller
                 'path' => $path
             ]);
         }
+        $tags = explode(',', $request->input('tags'));
+        $tags_ids = [];
+        foreach ($tags as $tag) {
+            $tag_ob  = Tag::create(['name' => $tag]);
+            $tags_ids[] = $tag_ob->id;
+        }
+        if (count($tags_ids) > 0)
+            $post->tags()->sync($tags_ids);
         return redirect()->route('admin.posts.create')->with('success', 'Post has been created');
     }
 
@@ -82,8 +91,17 @@ class AdminPostsController extends Controller
      */
     public function edit(Post $post)
     {
+        $tags = '';
+        foreach ($post->tags as $key => $tag) {
+            $tags .= $tag->name;
+            if ($key !== count($post->tags) - 1)
+                $tags .= ', ';
+        }
+
+
         return view('admin_dashboard.posts.edit', [
             'post' => $post,
+            'tags' => $tags,
             'categories' => Category::pluck('name', 'id')
         ]);
     }
@@ -107,6 +125,15 @@ class AdminPostsController extends Controller
                 'path' => $path
             ]);
         }
+
+        $tags = explode(',', $request->input('tags'));
+        $tags_ids = [];
+        foreach ($tags as $tag) {
+            $tag_ob  = Tag::create(['name' => trim($tag)]);
+            $tags_ids[] = $tag_ob->id;
+        }
+        if (count($tags_ids) > 0)
+            $post->tags()->sync($tags_ids);
         return redirect()->route('admin.posts.edit', $post)->with('success', 'Post has been updated');
     }
 
@@ -118,6 +145,7 @@ class AdminPostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->delete();
         $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post has been delete');
     }
