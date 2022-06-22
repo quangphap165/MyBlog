@@ -20,11 +20,9 @@ return new class extends Migration
             $table->string('excerpt');
             $table->text('body');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
 
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
 
 
             $table->integer('views')->default(0);
