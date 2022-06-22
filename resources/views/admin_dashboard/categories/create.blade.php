@@ -38,7 +38,7 @@
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Category Name</label>
                                         <input type="text" value='{{ old("name") }}' name="name" required class="form-control" id="inputProductTitle">
-                                        @error('title')
+                                        @error('name')
                                         <p class="text-danger">{{ $message}}</p>
                                         @enderror
                                     </div>
