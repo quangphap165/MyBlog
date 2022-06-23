@@ -21,6 +21,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
+use App\Http\Controllers\AdminControllers\AdminContactsController;
 use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\AdminUsersController;
@@ -63,4 +64,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_permissions')-
     Route::resource('comments', AdminCommentsController::class)->except('show');
     Route::resource('roles', AdminRolesController::class)->except('show');
     Route::resource('users', AdminUsersController::class);
+
+    Route::get('contacts', [AdminContactsController::class, 'index'])->name('contacts');
+    Route::delete('contacts/{contact}', [AdminContactsController::class, 'destroy'])->name('contacts.destroy');
 });
