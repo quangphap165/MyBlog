@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminControllers\AdminSettingController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminCommentsController;
 use App\Http\Controllers\AdminControllers\AdminContactsController;
@@ -67,4 +68,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_permissions')-
 
     Route::get('contacts', [AdminContactsController::class, 'index'])->name('contacts');
     Route::delete('contacts/{contact}', [AdminContactsController::class, 'destroy'])->name('contacts.destroy');
+
+    Route::get('setting', [AdminSettingController::class, 'edit'])->name('setting.edit');
+    Route::post('setting', [AdminSettingController::class, 'update'])->name('setting.update');
 });
