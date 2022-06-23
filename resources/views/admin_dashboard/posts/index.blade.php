@@ -62,7 +62,7 @@
                                 <td>{{$post->created_at->diffForHumans()}}</td>
 
                                 <td>
-                                    <div class="badge rounded-pill @if($post->status === 'published') {{ 'text-info bg-light-info'}} @elseif($post->status ==='draft') {{ 'text-warning bg-light-warning'}} @else {{ 'text-danger bg-light-danger'}} @endif p-2 text-uppercase px-3">
+                                    <div class="badge rounded-pill @if($post->status === 'published') {{ 'text-info bg-light-info'}} @elseif($post->status ==='draft') {{ 'text-warning bg-light-warning'}} @else {{ 'text-info bg-light-info'}} @endif p-2 text-uppercase px-3">
                                         <i>{{$post->status}}</i>
                                     </div>
                                 </td>

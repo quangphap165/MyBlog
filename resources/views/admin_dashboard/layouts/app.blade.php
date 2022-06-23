@@ -34,6 +34,9 @@
     @if(Session::has('success'))
     <div class="general-message alert alert-info">{{ Session::get('success')}}</div>
     @endif
+    @if(Session::has('error'))
+    <div class="general-message alert alert-danger">{{ Session::get('error')}}</div>
+    @endif
     <!--wrapper-->
     <div class="wrapper">
         <!--start header -->
