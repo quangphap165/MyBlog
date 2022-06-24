@@ -29,6 +29,7 @@ use App\Http\Controllers\AdminControllers\AdminUsersController;
 use App\Http\Controllers\AdminControllers\TinyMCEController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\TagController;
 
 
@@ -47,6 +48,7 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::get('/tags/{tag:name}', [TagController::class, 'show'])->name('tags.show');
+Route::post('newsletter', [NewsletterController::class, 'store'])->name('newsletter_store');
 
 require __DIR__ . '/auth.php';
 

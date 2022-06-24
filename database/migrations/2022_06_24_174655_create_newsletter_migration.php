@@ -13,22 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('newsletter', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('excerpt');
-            $table->text('body');
-
-            $table->foreignId('user_id');
-            $table->foreignId('category_id');
-
-
-
-            $table->integer('views')->default(0);
-            $table->boolean('approved')->default(true);
-
-
+            $table->string('email');
 
             $table->timestamps();
         });
@@ -41,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('newsletter_migration');
     }
 };

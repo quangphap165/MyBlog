@@ -43,19 +43,16 @@
                         <div class="col-md-6">
                             <!-- <label for="fname">First Name</label> -->
                             <x-blog.form.input value='{{ old("first_name")}}' placeholder='Your Firstname' name="first_name" />
-                            <small class='error text-danger first_name'></small>
                         </div>
                         <div class="col-md-6">
                             <!-- <label for="lname">Last Name</label> -->
                             <x-blog.form.input value='{{ old("last_name")}}' placeholder='Your Lastname' name="last_name" />
-                            <small class='error text-danger last_name'></small>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <x-blog.form.input value='{{ old("email")}}' placeholder='Your Email.' type='email' name="email" />
-                            <small class='error text-danger email'></small>
                             <!-- <label for="email">Email</label> -->
                         </div>
                     </div>
@@ -64,7 +61,6 @@
                         <div class="col-md-12">
                             <!-- <label for="subject">Subject</label> -->
                             <x-blog.form.input value='{{ old("subject")}}' required='false' placeholder='Your subject.' name="subject" />
-                            <small class='error text-danger subject'></small>
                         </div>
                     </div>
 
@@ -72,7 +68,6 @@
                         <div class="col-md-12">
                             <!-- <label for="message">Message</label> -->
                             <x-blog.form.textarea value='{{ old("message")}}' placeholder='what you want to tell us.' name="message" />
-                            <small class='error text-danger message'></small>
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,7 +75,7 @@
                     </div>
                 </form>
 
-                <x-blog.message :status="'success'" />
+                <x-blog.message : status="'success'" />
 
 
             </div>

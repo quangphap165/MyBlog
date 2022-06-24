@@ -34,7 +34,7 @@
 
                         @foreach($post->comments as $comment)
                         <div id="comment_{{ $comment->id}}" class="review">
-                            <div class="user-img" style="background-image: url(blog_template/images/person1.jpg)"></div>
+                            <div class="user-img" style="background-image: url({{ $comment->user->image ? asset('storage/' . $comment->user->image->path .'') : 'https://api.poralist.com/api-v1/files/file-user/user-photos/default/user-photo.png'}})"></div>
                             <div class="desc">
                                 <h4>
                                     <span class="text-left">{{ $comment->user->name}}</span>
